@@ -1,0 +1,11 @@
+[
+  {
+	"type": "memory",
+	"title": "Bank Vocabulary Match",
+	"time_limit": 60,
+	"pairs": [
+	  { "de": "Sparkasse", "en": "Savings Bank" },
+	  { "de": "Girokonto", "en": "Checking Account" }
+	]
+  }
+]
