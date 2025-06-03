@@ -21,10 +21,10 @@ offset_bottom = 427.0
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 0
-offset_left = 429.0
-offset_top = -58.0
-offset_right = 729.0
-offset_bottom = 242.0
+offset_left = 399.0
+offset_top = 28.0
+offset_right = 699.0
+offset_bottom = 328.0
 rotation = -0.00315781
 columns = 4
 
