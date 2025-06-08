@@ -25,7 +25,8 @@ offset_left = 399.0
 offset_top = 28.0
 offset_right = 699.0
 offset_bottom = 328.0
-rotation = -0.00315781
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
 columns = 4
 
 [node name="TimerLabel" type="Label" parent="."]

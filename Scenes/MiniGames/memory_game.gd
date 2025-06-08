@@ -13,10 +13,12 @@ var move_limit = 25
 var current_moves = 0
 var card_scene = preload("res://Scenes/MiniGames/Card.tscn")
 var seconds_left: int = 0
+var game_over_screen = preload("res://Scenes/GameOver.tscn")
+
 func _ready():
 	setup_game()
-	start_timer(task_data.get("time_limit", 60))
-	print("Timer Label: ", timer_label)
+	start_timer(task_data.get("time_limit", 5))
+	print("Timer Label: ", timer_label.text)
 
 func setup_game():
 	var pairs = task_data.get("pairs", [])
@@ -51,8 +53,9 @@ func check_match():
 		matched_pairs += 1
 		selected_cards.clear()
 		if matched_pairs == task_data.get("pairs", []).size():
+			show_game_over(true)
 			task_completed.emit(true)
-			queue_free()
+			return
 	else:
 		await get_tree().create_timer(1.0).timeout
 		card1.conceal()
@@ -60,8 +63,9 @@ func check_match():
 		selected_cards.clear()
 
 	if current_moves >= move_limit:
+		show_game_over(false)
 		task_completed.emit(false)
-		queue_free()
+		return
 
 func update_ui():
 	move_label.text = "Moves: %d/%d" % [current_moves, move_limit]
@@ -79,5 +83,19 @@ func _on_timer_tick():
 	seconds_left -= 1
 	timer_label.text = "Time: %ds" %seconds_left
 	if seconds_left <= 0:
+		show_game_over(false)
 		task_completed.emit(false)
 		queue_free()
+
+func show_game_over(success: bool):
+	var screen = game_over_screen.instantiate()
+	screen.setup(success, current_moves)
+	screen.restart_requested.connect(_on_restart_requested)
+	screen.quit_requested.connect(_on_quit_requested)
+	add_child(screen)
+
+func _on_restart_requested():
+	get_tree().reload_current_scene()
+
+func _on_quit_requested():
+	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
