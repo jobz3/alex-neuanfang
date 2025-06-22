@@ -8,7 +8,7 @@ func _ready() -> void:
 	start_next_task() 
 	
 func load_tasks():
-	var file = FileAccess.open("res://data/major_tasks.json", FileAccess.READ)
+	var file = FileAccess.open("res://data/memory_game_data.json", FileAccess.READ)
 	var content = file.get_as_text()
 	var parsed = JSON.parse_string(content)
 	tasks = parsed if parsed is Array else []

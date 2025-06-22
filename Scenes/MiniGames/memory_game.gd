@@ -22,6 +22,8 @@ func _ready():
 
 func setup_game():
 	var pairs = task_data.get("pairs", [])
+	#change to the db
+	#var pairs = GameData.memory_pairs
 	var all_words = []
 	for pair in pairs:
 		all_words.append({ "word": pair.de, "pair_id": pair.de })

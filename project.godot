@@ -15,6 +15,10 @@ run/main_scene="uid://enwj3wk7hwtw"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameData="*res://Scripts/GameData.gd"
+
 [dotnet]
 
 project/assembly_name="Alex- Neuanfang"
